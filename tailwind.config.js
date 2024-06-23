@@ -7,7 +7,10 @@ export default {
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
-        './resources/js/**/*.jsx',
+        // './resources/js/**/*.jsx',
+        './resources/ts/**/*.js',  // パスの書き換え
+        './resources/ts/**/*.ts',  // 追加
+        './resources/ts/**/*.tsx', // 追加
     ],
 
     theme: {

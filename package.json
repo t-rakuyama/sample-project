@@ -3,7 +3,9 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "format": "prettier --write src/resources/ts"
+
     },
     "devDependencies": {
         "@headlessui/react": "^2.0.0",

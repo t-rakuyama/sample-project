@@ -9,7 +9,8 @@ class TaskRepository
 {
     public function createTask(string $title)
     {
-        Task::insert(['title' => $title]);
+        $task = new Task();
+        $task->fill(['title' => $title])->save();
     }
 
     public function findAll()

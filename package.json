@@ -5,7 +5,6 @@
         "dev": "vite",
         "build": "vite build",
         "format": "prettier --write resources/ts"
-
     },
     "devDependencies": {
         "@headlessui/react": "^2.0.0",
@@ -16,7 +15,7 @@
         "@types/react-dom": "^18.3.0",
         "@vitejs/plugin-react": "^4.2.0",
         "autoprefixer": "^10.4.12",
-        "axios": "^1.6.4",
+        "axios": "^1.7.2",
         "laravel-vite-plugin": "^1.0",
         "postcss": "^8.4.31",
         "prettier": "^3.3.2",

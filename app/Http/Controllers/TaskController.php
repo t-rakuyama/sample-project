@@ -1,13 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Http\Controller;
+namespace App\Http\Controllers;
 
 use App\Repositories\TaskRepository;
+use App\Http\Requests\TaskCreateRequest;
 
-class TaskController extends Controller
+class TaskController
 {
-    public function createTask(Request $request)
+    public function create(TaskCreateRequest $request)
     {
         $taskRepository = new TaskRepository();
         $taskRepository->createTask($request->title);

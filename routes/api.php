@@ -7,4 +7,5 @@ use Inertia\Inertia;
 
 Route::middleware('api')->group(function () {
     Route::post('/task', [TaskController::class, 'create']);
+    Route::get('/task', [TaskController::class, 'index']);
 });

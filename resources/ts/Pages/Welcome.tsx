@@ -1,11 +1,10 @@
 import axios from "axios"
 import { List } from "../Components/List"
 import { Button } from "../Components/Button"
-import { Header } from "../Components/Header/Header"
-import { Head } from "@inertiajs/react"
 import React, { useCallback, useEffect, useState } from "react"
 import { ListItem } from "../Components/List/ListItem"
 import { Task } from "../Types/Task"
+import DefaultLayout from "../Layouts/DefaultLayout"
 
 export default function Welcome({ auth, laravelVersion, phpVersion }) {
   const [taskList, setTaskList] = useState<Task[]>([])
@@ -57,38 +56,34 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
   }
 
   return (
-    <>
-      <Head title="Welcome" />
-      <div className="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
-        <Header auth={auth} />
-        <div className="relative min-h-screen flex flex-col items-center selection:bg-[#FF2D20] selection:text-white">
-          <div className="relative w-full max-w-2xl px-6 lg:max-w-7xl">
-            <main className="mt-6">
-              <div className="flex">
-                <Button className={""} text={"add"} onClick={displayTextArea} />
-                <form name="task" onSubmit={onSubmit}>
-                  <input
-                    id="taskInput"
-                    name="title"
-                    className="flex items-start space-x-6 text-black"
-                    type="text"
-                    style={{ display: "none" }}
-                    onChange={onChange}
-                  />
-                </form>
-              </div>
-              <List>
-                {taskList!.map((task, index) => (
-                  <ListItem task={task} key={index} />
-                ))}
-              </List>
-            </main>
-            <footer className="py-16 text-center text-sm text-black dark:text-white/70">
-              Laravel v{laravelVersion} (PHP v{phpVersion})
-            </footer>
-          </div>
+    <DefaultLayout title={"タスク一覧画面"} auth={auth}>
+      <div className="relative min-h-screen flex flex-col items-center selection:bg-[#FF2D20] selection:text-white">
+        <div className="relative w-full max-w-2xl px-6 lg:max-w-7xl">
+          <main className="mt-6">
+            <div className="flex">
+              <Button className={""} text={"add"} onClick={displayTextArea} />
+              <form name="task" onSubmit={onSubmit}>
+                <input
+                  id="taskInput"
+                  name="title"
+                  className="flex items-start space-x-6 text-black"
+                  type="text"
+                  style={{ display: "none" }}
+                  onChange={onChange}
+                />
+              </form>
+            </div>
+            <List>
+              {taskList!.map((task, index) => (
+                <ListItem task={task} key={index} />
+              ))}
+            </List>
+          </main>
+          <footer className="py-16 text-center text-sm text-black dark:text-white/70">
+            Laravel v{laravelVersion} (PHP v{phpVersion})
+          </footer>
         </div>
       </div>
-    </>
+    </DefaultLayout>
   )
 }

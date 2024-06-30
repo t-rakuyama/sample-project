@@ -2,34 +2,28 @@ import axios from "axios"
 import { List } from "../Components/List"
 import { Button } from "../Components/Button"
 import { Header } from "../Components/Header/Header"
-import { Link, Head } from "@inertiajs/react"
-import React, { useRef, useState } from "react"
+import { Head } from "@inertiajs/react"
+import React, { useCallback, useEffect, useState } from "react"
 import { ListItem } from "../Components/List/ListItem"
+import { Task } from "../Types/Task"
 
 export default function Welcome({ auth, laravelVersion, phpVersion }) {
-  const taskList = [
-    {
-      id: 1,
-      title: "test",
-      description: "jpge",
-      status: "now",
-      point: 1,
-    },
-    {
-      id: 2,
-      title: "test",
-      description: "jpge",
-      status: "now",
-      point: 1,
-    },
-    {
-      id: 3,
-      title: "test",
-      description: "jpge",
-      status: "now",
-      point: 1,
-    },
-  ]
+  const [taskList, setTaskList] = useState<Task[]>([])
+  const fetchTask = useCallback(async () => {
+    await axios
+      .get("/api/task")
+      .then((res) => {
+        setTaskList(res.data)
+        console.log(res.data)
+      })
+      .catch((e) => {
+        console.log(e)
+      })
+  }, [])
+
+  useEffect(() => {
+    fetchTask()
+  }, [])
 
   const displayTextArea = () => {
     let inputDom = document.getElementById("taskInput")
@@ -84,7 +78,7 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
                 </form>
               </div>
               <List>
-                {taskList.map((task, index) => (
+                {taskList!.map((task, index) => (
                   <ListItem task={task} key={index} />
                 ))}
               </List>

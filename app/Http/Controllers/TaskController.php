@@ -14,4 +14,10 @@ class TaskController
         $taskRepository->createTask($request->title);
         return response()->json('ok', 200);
     }
+
+    public function index()
+    {
+        $taskRepository = new TaskRepository();
+        return json_encode($taskRepository->findAll());
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\TaskRepository;
 use App\Http\Requests\TaskCreateRequest;
+use App\Http\Requests\TaskUpdateRequest;
 
 class TaskController
 {
@@ -19,5 +20,12 @@ class TaskController
     {
         $taskRepository = new TaskRepository();
         return json_encode($taskRepository->findAll());
+    }
+
+    public function update(TaskUpdateRequest $request)
+    {
+        $taskRepository = new TaskRepository();
+        $taskRepository->update($request->id, $request->title, $request->description, (int)$request->status, (int)$request->point);
+        return response()->json('ok', 200);
     }
 }

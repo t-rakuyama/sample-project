@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useState } from "react"
 import { Task } from "../Types/Task"
 import { Button } from "../Components/Button"
 import DefaultLayout from "../Layouts/DefaultLayout"
+import { Label } from "../Components/Label"
 
 const TaskDetail = ({ auth, id }) => {
   const initialTask: Task = { id: id, title: "" }
@@ -71,7 +72,7 @@ const TaskDetail = ({ auth, id }) => {
         <div>
           <form name="task" onChange={onChange}>
             <div className="w-200">
-              <label className="text-sm">Task Name</label>
+              <Label className="text-sm" text="Task Name" />
               <div className="mt-1">
                 <input
                   type="text"
@@ -83,7 +84,7 @@ const TaskDetail = ({ auth, id }) => {
             </div>
 
             <div className="w-200">
-              <label className="text-sm">Description</label>
+              <Label className="text-sm" text="Description" />
               <div className="mt-1">
                 <textarea
                   name="description"
@@ -94,7 +95,7 @@ const TaskDetail = ({ auth, id }) => {
               </div>
             </div>
             <div className="mx-auto w-full max-w-xs">
-              <label className="text-sm text-gray-800">Status</label>
+              <Label className="text-sm" text="Status" />
               <div className="mt-1">
                 <select
                   name="status"
@@ -109,7 +110,7 @@ const TaskDetail = ({ auth, id }) => {
               </div>
             </div>
             <div className="mx-auto w-full max-w-xs">
-              <label className="text-sm text-gray-800">Point</label>
+              <Label className="text-sm" text="Point" />
               <div className="mt-1">
                 <select
                   name="point"

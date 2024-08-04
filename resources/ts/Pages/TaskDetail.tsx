@@ -5,6 +5,7 @@ import { Button } from "../Components/Button"
 import DefaultLayout from "../Layouts/DefaultLayout"
 import { Label } from "../Components/Label"
 import { InputText } from "../Components/InputText"
+import { TextArea } from "../Components/TextArea"
 
 const TaskDetail = ({ auth, id }) => {
   const initialTask: Task = { id: id, title: "" }
@@ -82,12 +83,11 @@ const TaskDetail = ({ auth, id }) => {
             <div className="w-200">
               <Label className="text-sm" text="Description" />
               <div className="mt-1">
-                <textarea
+                <TextArea
                   name="description"
-                  rows={4}
                   className="rounded p-2 w-full h-full border border-gray-400 focus:outline-0 focus:ring-1 focus:ring-offset-1 text-sm focus:ring-offset-sky-200 text-black"
                   defaultValue={task.description}
-                ></textarea>
+                />
               </div>
             </div>
             <div className="mx-auto w-full max-w-xs">

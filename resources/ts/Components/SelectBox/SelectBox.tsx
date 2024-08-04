@@ -11,7 +11,9 @@ type Props = {
 export const SelectBox = ({ name, onChange, className, selectValue, values }: Props) => (
   <select name={name} onChange={onChange} className={className} value={selectValue}>
     {values.map((content) => (
-      <option value={content.value}>{content.text}</option>
+      <option value={content.value} key={content.value}>
+        {content.text}
+      </option>
     ))}
   </select>
 )

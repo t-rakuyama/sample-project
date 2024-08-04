@@ -45,7 +45,7 @@ const TaskDetail = ({ auth, id }) => {
       .patch("/api/task", task)
       .then((res) => {
         console.log(res)
-        location.href = "/"
+        location.href = `/task/${task.id}`
       })
       .catch((e) => {
         console.log(e.response)

@@ -9,5 +9,6 @@ use Inertia\Inertia;
 Route::middleware('api')->group(function () {
     Route::post('/task', [TaskController::class, 'create']);
     Route::get('/task', [TaskController::class, 'index']);
+    Route::patch('/task', [TaskController::class, 'update']);
     Route::get("/task/{id}", [TaskDetailController::class, 'index']);
 });

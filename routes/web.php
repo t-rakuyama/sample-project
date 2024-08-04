@@ -14,6 +14,14 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('/task/{id}', function ($id) {
+    return Inertia::render('TaskDetail', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'id' => $id
+    ]);
+});
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

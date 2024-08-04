@@ -4,6 +4,7 @@ import { Task } from "../Types/Task"
 import { Button } from "../Components/Button"
 import DefaultLayout from "../Layouts/DefaultLayout"
 import { Label } from "../Components/Label"
+import { InputText } from "../Components/InputText"
 
 const TaskDetail = ({ auth, id }) => {
   const initialTask: Task = { id: id, title: "" }
@@ -74,12 +75,7 @@ const TaskDetail = ({ auth, id }) => {
             <div className="w-200">
               <Label className="text-sm" text="Task Name" />
               <div className="mt-1">
-                <input
-                  type="text"
-                  name="title"
-                  className="rounded text-black"
-                  defaultValue={task.title}
-                ></input>
+                <InputText name="title" className="rounded text-black" defaultValue={task.title} />
               </div>
             </div>
 

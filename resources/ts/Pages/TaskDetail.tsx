@@ -6,6 +6,7 @@ import DefaultLayout from "../Layouts/DefaultLayout"
 import { Label } from "../Components/Label"
 import { InputText } from "../Components/InputText"
 import { TextArea } from "../Components/TextArea"
+import { SelectBox } from "../Components/SelectBox"
 
 const TaskDetail = ({ auth, id }) => {
   const initialTask: Task = { id: id, title: "" }
@@ -93,31 +94,33 @@ const TaskDetail = ({ auth, id }) => {
             <div className="mx-auto w-full max-w-xs">
               <Label className="text-sm" text="Status" />
               <div className="mt-1">
-                <select
+                <SelectBox
                   name="status"
                   onChange={(event) => changeSelect(event.target.value, "status")}
-                  value={statusSelected}
                   className="mt-1 text-black block w-full rounded-md border border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                >
-                  <option value="1">未着手</option>
-                  <option value="2">進行中</option>
-                  <option value="3">完了</option>
-                </select>
+                  selectValue={statusSelected!}
+                  values={[
+                    { value: "1", text: "未着手" },
+                    { value: "2", text: "進行中" },
+                    { value: "3", text: "完了" },
+                  ]}
+                />
               </div>
             </div>
             <div className="mx-auto w-full max-w-xs">
               <Label className="text-sm" text="Point" />
               <div className="mt-1">
-                <select
+                <SelectBox
                   name="point"
                   onChange={(event) => changeSelect(event.target.value, "point")}
-                  value={pointSelected}
                   className="mt-1 text-black block w-full rounded-md border border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                >
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                </select>
+                  selectValue={pointSelected!}
+                  values={[
+                    { value: "1", text: "1" },
+                    { value: "2", text: "2" },
+                    { value: "3", text: "3" },
+                  ]}
+                />
               </div>
             </div>
             <div className="w-200">

@@ -3,7 +3,7 @@ import React from "react"
 type Props = {
   name: string
   className: string
-  defaultValue: string
+  defaultValue?: string
 }
 
 export const TextArea = ({ name, className, defaultValue }: Props) => (

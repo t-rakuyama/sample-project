@@ -6,7 +6,7 @@ import { ListItem } from "../Components/List/ListItem"
 import { Task } from "../Types/Task"
 import DefaultLayout from "../Layouts/DefaultLayout"
 
-export default function Welcome({ auth, laravelVersion, phpVersion }) {
+const TaskList = ({ auth, laravelVersion, phpVersion }) => {
   const [taskList, setTaskList] = useState<Task[]>([])
   const fetchTask = useCallback(async () => {
     await axios
@@ -83,3 +83,5 @@ export default function Welcome({ auth, laravelVersion, phpVersion }) {
     </DefaultLayout>
   )
 }
+
+export default TaskList

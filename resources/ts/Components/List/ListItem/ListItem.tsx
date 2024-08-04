@@ -10,7 +10,9 @@ export const ListItem = ({ task }: Props) => {
     <>
       <article className="flex items-start space-x-6 p-6">
         <div className="min-w-0 relative flex-auto">
-          <p className="font-semibold truncate pr-20">{task.title}</p>
+          <a href={`task/${task.id}`} className="font-semibold truncate pr-20">
+            {task.title}
+          </a>
           <p className="text-black/50 dark:text-white">{task.point}</p>
         </div>
       </article>

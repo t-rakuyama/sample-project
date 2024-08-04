@@ -14,7 +14,6 @@ const TaskDetail = ({ auth, id }) => {
         setTask(res.data)
         setStatusSelected(res.data.status ?? "1")
         setPointSelected(res.data.point ?? "1")
-        console.log(res.data)
       })
       .catch((e) => {
         console.log(e)
@@ -115,7 +114,7 @@ const TaskDetail = ({ auth, id }) => {
                 <select
                   name="point"
                   onChange={(event) => changeSelect(event.target.value, "point")}
-                  defaultValue={pointSelected}
+                  value={pointSelected}
                   className="mt-1 text-black block w-full rounded-md border border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
                 >
                   <option value="1">1</option>

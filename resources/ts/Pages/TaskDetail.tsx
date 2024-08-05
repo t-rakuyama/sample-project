@@ -7,17 +7,24 @@ import { Label } from "../Components/Label"
 import { InputText } from "../Components/InputText"
 import { TextArea } from "../Components/TextArea"
 import { SelectBox } from "../Components/SelectBox"
+import { formValidate } from "../Modules/TaskDetail"
 
 const TaskDetail = ({ auth, id }) => {
   const initialTask: Task = { id: id, title: "" }
   const [task, setTask] = useState<Task>(initialTask)
+  const [statusSelected, setStatusSelected] = useState<string | undefined>(undefined)
+  const [pointSelected, setPointSelected] = useState<string | undefined>(undefined)
   const fetchTask = useCallback(async () => {
     await axios
       .get(`/api/task/${id}`)
       .then((res) => {
         setTask(res.data)
-        setStatusSelected(res.data.status ?? "1")
-        setPointSelected(res.data.point ?? "1")
+        if (res.data.status) {
+          setStatusSelected(res.data.status)
+        }
+        if (res.data.point) {
+          setPointSelected(res.data.point)
+        }
       })
       .catch((e) => {
         console.log(e)
@@ -32,31 +39,31 @@ const TaskDetail = ({ auth, id }) => {
   }, [])
 
   const onChange = () => {
-    let form = document.forms["task"].elements
-    let title = form.title.value
-    let description = form.description.value
-    let status = form.status.value
-    let point = form.point.value
+    const form = document.forms["task"].elements
 
-    task.title = title
-    task.description = description
-    task.status = status
-    task.point = point
+    task.title = form.title.value
+    task.description = form.description.value
+    task.status = form.status.value
+    task.point = form.point.value
   }
 
   const onSubmit = async () => {
-    await axios
-      .patch("/api/task", task)
-      .then((res) => {
-        console.log(res)
-        location.href = `/task/${task.id}`
-      })
-      .catch((e) => {
-        console.log(e.response)
-      })
+    if (formValidate(task)) {
+      await axios
+        .patch("/api/task", task)
+        .then((res) => {
+          console.log(res)
+          location.href = `/task/${task.id}`
+        })
+        .catch((e) => {
+          console.log(e.response)
+        })
+    } else {
+      setErrorMessage("入力値に誤りがあります")
+    }
   }
-  const [statusSelected, setStatusSelected] = useState<string>()
-  const [pointSelected, setPointSelected] = useState<string>()
+
+  const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined)
 
   const changeSelect = (newSelect: string, type: "status" | "point") => {
     switch (type) {
@@ -70,10 +77,12 @@ const TaskDetail = ({ auth, id }) => {
   }
 
   return (
-    <DefaultLayout title={"タスク一覧画面"} auth={auth}>
+    <DefaultLayout title={"タスク詳細画面"} auth={auth}>
       <main>
         <div>
-          <form name="task" onChange={onChange}>
+          {errorMessage ?? <span>{errorMessage}</span>}
+
+          <form name="task" onInput={onChange}>
             <div className="w-200">
               <Label className="text-sm" text="Task Name" />
               <div className="mt-1">
@@ -98,7 +107,7 @@ const TaskDetail = ({ auth, id }) => {
                   name="status"
                   onChange={(event) => changeSelect(event.target.value, "status")}
                   className="mt-1 text-black block w-full rounded-md border border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                  selectValue={statusSelected!}
+                  selectValue={statusSelected}
                   values={[
                     { value: "1", text: "未着手" },
                     { value: "2", text: "進行中" },
@@ -114,7 +123,7 @@ const TaskDetail = ({ auth, id }) => {
                   name="point"
                   onChange={(event) => changeSelect(event.target.value, "point")}
                   className="mt-1 text-black block w-full rounded-md border border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                  selectValue={pointSelected!}
+                  selectValue={pointSelected}
                   values={[
                     { value: "1", text: "1" },
                     { value: "2", text: "2" },

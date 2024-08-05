@@ -33,8 +33,12 @@ class TaskRepository
         $task = Task::find($id);
         $task->title = $title;
         $task->description = $description;
-        $task->status = $status;
-        $task->point = $point;
+        if ($status) {
+            $task->status = $status;
+        }
+        if ($point) {
+            $task->point = $point;
+        }
         $task->save();
     }
 }

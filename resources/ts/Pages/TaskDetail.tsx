@@ -100,7 +100,8 @@ const TaskDetail = ({ auth, id }) => {
                 />
               </div>
             </div>
-            <div className="mx-auto w-full max-w-xs">
+
+            <div className=" w-full max-w-xs">
               <Label className="text-sm" text="Status" />
               <div className="mt-1">
                 <SelectBox
@@ -116,7 +117,7 @@ const TaskDetail = ({ auth, id }) => {
                 />
               </div>
             </div>
-            <div className="mx-auto w-full max-w-xs">
+            <div className="w-full max-w-xs">
               <Label className="text-sm" text="Point" />
               <div className="mt-1">
                 <SelectBox
@@ -132,7 +133,8 @@ const TaskDetail = ({ auth, id }) => {
                 />
               </div>
             </div>
-            <div className="w-200">
+
+            <div className="w-200 my-10">
               <Button className={""} text={"更新する"} onClick={onSubmit} />
             </div>
           </form>

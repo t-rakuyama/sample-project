@@ -13,7 +13,6 @@ export const ListItem = ({ task }: Props) => {
           <a href={`task/${task.id}`} className="font-semibold truncate pr-20">
             {task.title}
           </a>
-          <p className="text-black/50 dark:text-white">{task.point}</p>
         </div>
       </article>
     </>

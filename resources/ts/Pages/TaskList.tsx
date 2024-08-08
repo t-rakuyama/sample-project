@@ -5,6 +5,7 @@ import React, { useCallback, useEffect, useState } from "react"
 import { ListItem } from "../Components/List/ListItem"
 import { Task } from "../Types/Task"
 import DefaultLayout from "../Layouts/DefaultLayout"
+import { validate } from "../Modules/TaskList/formValidator"
 
 const TaskList = ({ auth, laravelVersion, phpVersion }) => {
   const [taskList, setTaskList] = useState<Task[]>([])
@@ -33,18 +34,22 @@ const TaskList = ({ auth, laravelVersion, phpVersion }) => {
   }
 
   const [data, setData] = useState({ title: "" })
+  const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined)
 
   const onSubmit = async () => {
-    await axios
-      .post("/api/task", data)
-      .then((res) => {
-        setData({ title: "" })
-        console.log(res)
-        location.href = "/"
-      })
-      .catch((e) => {
-        console.log(e.response)
-      })
+    if (!validate(data.title)) {
+      await axios
+        .post("/api/task", data)
+        .then((res) => {
+          setData({ title: "" })
+          location.href = "/"
+        })
+        .catch((e) => {
+          console.log(e.response)
+        })
+    } else {
+      setErrorMessage("入力値に誤りがあります")
+    }
   }
 
   const onChange = () => {
@@ -58,6 +63,7 @@ const TaskList = ({ auth, laravelVersion, phpVersion }) => {
   return (
     <DefaultLayout title={"タスク一覧画面"} auth={auth}>
       <main className="mt-6">
+        {errorMessage ?? <span>{errorMessage}</span>}
         <div className="flex">
           <Button className={""} text={"add"} onClick={displayTextArea} />
           <form name="task" onSubmit={onSubmit}>

@@ -64,7 +64,7 @@ const TaskList = ({ auth, laravelVersion, phpVersion }) => {
             <input
               id="taskInput"
               name="title"
-              className="flex items-start space-x-6 text-black"
+              className="flex items-start space-x-6 text-black ml-3"
               type="text"
               style={{ display: "none" }}
               onChange={onChange}

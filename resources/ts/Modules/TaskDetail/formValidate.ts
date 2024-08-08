@@ -1,5 +1,5 @@
 import { Task } from "../../Types/Task"
-import { stringValidator, numberValidator} from "../Validator"
+import { stringValidator, numberValidator } from "../Validator"
 
 export const formValidate = (form: Task) => {
   if (!numberValidator(form.id) || !stringValidator(form.title)) {

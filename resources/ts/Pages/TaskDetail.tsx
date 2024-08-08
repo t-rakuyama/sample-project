@@ -65,14 +65,14 @@ const TaskDetail = ({ auth, id }) => {
 
   const deletTask = async () => {
     await axios
-        .delete(`/api/task/${task.id}`)
-        .then((res) => {
-          console.log(res)
-          location.href = `/`
-        })
-        .catch((e) => {
-          console.log(e.response)
-        })
+      .delete(`/api/task/${task.id}`)
+      .then((res) => {
+        console.log(res)
+        location.href = `/`
+      })
+      .catch((e) => {
+        console.log(e.response)
+      })
   }
 
   const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined)

@@ -1,31 +1,18 @@
 import { Task } from "../../Types/Task"
+import { stringValidator, numberValidator} from "../Validator"
 
 export const formValidate = (form: Task) => {
-  if (!form.id || !form.title) {
+  if (!numberValidator(form.id) || !stringValidator(form.title)) {
     return false
   }
-  if (!validateNumber(form.id)) {
+  if (form.description && !stringValidator(form.description)) {
     return false
   }
-  if (!validateString(form.title)) {
+  if (form.status && !numberValidator(Number(form.status))) {
     return false
   }
-  if (form.description && !validateString(form.description)) {
-    return false
-  }
-  if (form.status && !validateNumber(Number(form.status))) {
-    return false
-  }
-  if (form.point && !validateNumber(Number(form.point))) {
+  if (form.point && !numberValidator(Number(form.point))) {
     return false
   }
   return true
-}
-
-const validateString = (value?: string) => {
-  return typeof value === "string"
-}
-
-const validateNumber = (value: number) => {
-  return !isNaN(value)
 }

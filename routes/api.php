@@ -11,4 +11,5 @@ Route::middleware('api')->group(function () {
     Route::get('/task', [TaskController::class, 'index']);
     Route::patch('/task', [TaskController::class, 'update']);
     Route::get("/task/{id}", [TaskDetailController::class, 'index']);
+    Route::delete("/task/{id}", [TaskController::class, 'delete']);
 });

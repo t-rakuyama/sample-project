@@ -5,7 +5,7 @@ import React, { useCallback, useEffect, useState } from "react"
 import { ListItem } from "../Components/List/ListItem"
 import { Task } from "../Types/Task"
 import DefaultLayout from "../Layouts/DefaultLayout"
-import { validate } from "../Modules/TaskList/formValidator"
+import { validate } from "../Modules/TaskList"
 
 const TaskList = ({ auth, laravelVersion, phpVersion }) => {
   const [taskList, setTaskList] = useState<Task[]>([])

@@ -63,6 +63,18 @@ const TaskDetail = ({ auth, id }) => {
     }
   }
 
+  const deletTask = async () => {
+    await axios
+        .delete(`/api/task/${task.id}`)
+        .then((res) => {
+          console.log(res)
+          location.href = `/`
+        })
+        .catch((e) => {
+          console.log(e.response)
+        })
+  }
+
   const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined)
 
   const changeSelect = (newSelect: string, type: "status" | "point") => {
@@ -133,9 +145,13 @@ const TaskDetail = ({ auth, id }) => {
                 />
               </div>
             </div>
-
-            <div className="w-200 my-10">
-              <Button className={""} text={"更新する"} onClick={onSubmit} />
+            <div className="flex my-10">
+              <div className="w-200 mr-10">
+                <Button className={""} text={"更新する"} onClick={onSubmit} />
+              </div>
+              <div className="w-200">
+                <Button className={""} text={"削除する"} onClick={deletTask} />
+              </div>
             </div>
           </form>
         </div>

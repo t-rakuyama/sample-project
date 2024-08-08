@@ -28,4 +28,10 @@ class TaskController
         $taskRepository->update($request->id, $request->title, $request->description, (int)$request->status, (int)$request->point);
         return response()->json('ok', 200);
     }
+
+    public function delete(string $id) {
+        $taskRepository = new TaskRepository();
+        $taskRepository->delete((int) $id);
+        return response()->json('delete', 200);
+    }
 }

@@ -37,7 +37,7 @@ const TaskList = ({ auth, laravelVersion, phpVersion }) => {
   const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined)
 
   const onSubmit = async () => {
-    if (!validate(data.title)) {
+    if (validate(data.title)) {
       await axios
         .post("/api/task", data)
         .then((res) => {
